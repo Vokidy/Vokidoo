@@ -15,18 +15,21 @@ def process_anfisa(query):
     # Здесь проверьте, что переменная query равна строке 'Кто все мои друзья?'
     elif query == 'Кто все мои друзья?':
         friends_string = ''
-        # Чтобы получить перечень друзей -
-        # переберите словарь DATABASE в цикле
         for friend in DATABASE:
-            friends_string += friend + ' '    # Добавляйте к переменной friends_string имя друга и пробел
-        # Верните строку, составленную из 'Твои друзья: ' и friends_string
-            #elif: return 'Твои друзья: ' + friends_string
+            friends_string += friend + ' '
         return 'Твои друзья: ' + friends_string
+    elif query == 'Где все мои друзья?':
+        unique_cities = ''
+        for city in set(DATABASE.values()):
+            #unique_cities = set(DATABASE.values())
+            unique_cities += city + ' '
+        return 'Твои друзья в городах: ' + unique_cities
+
 
     else:
         return '<неизвестный запрос>'
-
 # Не изменяйте следующий код
 print('Привет, я Анфиса!')
 print(process_anfisa('Сколько у меня друзей?'))
 print(process_anfisa('Кто все мои друзья?'))
+print(process_anfisa('Где все мои друзья?'))
